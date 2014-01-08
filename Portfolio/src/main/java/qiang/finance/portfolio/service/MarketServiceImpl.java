@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import qiang.finance.portfolio.dao.jpa.MarketDao;
 import qiang.finance.portfolio.domain.Market;
@@ -25,6 +26,7 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
+	@Transactional
 	public Market saveMarket(Market market) {
 		return marketDao.save(market);
 	}
