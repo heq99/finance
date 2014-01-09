@@ -1,6 +1,7 @@
 package qiang.finance.portfolio.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -15,7 +16,10 @@ public class InstrumentType implements Serializable, DomainObject {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@TableGenerator(name="Instrument_Type_ID_Generator", table="ID_TABLE", 
+                    pkColumnName="ID_NAME", valueColumnName="ID_HI",
+                    pkColumnValue="INSTRUMENT_TYPE_ID", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="Instrument_Type_ID_Generator")
 	@Column(name="ID")
 	private int id;
 

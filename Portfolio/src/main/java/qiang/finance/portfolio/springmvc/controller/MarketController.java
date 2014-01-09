@@ -1,10 +1,13 @@
 package qiang.finance.portfolio.springmvc.controller;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,9 +24,13 @@ public class MarketController {
 	@Autowired
 	private MarketService marketService;
 	
-	@RequestMapping(value="/market_list")
-	public String listMarkets(Model model) {
-		return "MarketList";
+	@ModelAttribute("market_list")
+	public List<Market> listMarkets() {
+		List<Market> marketList = marketService.getAllMarkets();
+		
+		logger.info("populated " + marketList.size() + " maket items");
+		
+		return marketList;
 	}
 	
 	@RequestMapping(value="/market_input")
@@ -43,10 +50,10 @@ public class MarketController {
 		
 		Market savedMarket = marketService.saveMarket(market);
 		
-		redirectAttributes.addFlashAttribute("message", 
-				"The market was successfully added.");
+		redirectAttributes.addFlashAttribute("message", "The market "
+				+ savedMarket.getShortCode() + " was successfully added.");
 		
-		return "redirect:/market_view/" + savedMarket.getId();
+		return "redirect:/market_input";
 		
 	}
 	
@@ -55,5 +62,17 @@ public class MarketController {
 		Market market = marketService.getMarketById(id);
 		model.addAttribute("market", market);
 		return "MarketView";
+	}
+	
+	@RequestMapping(value="/market_delete/{id}")
+	public String deleteMarket(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+		logger.info("deleteMarket called");
+		
+		Market deletedMarket = marketService.deleteMarket(marketService.getMarketById(id));
+		
+		redirectAttributes.addAttribute("message", "The market "
+				+ deletedMarket.getShortCode() + " was successfully deleted.");
+		
+		return "redirect:/market_input";
 	}
 }

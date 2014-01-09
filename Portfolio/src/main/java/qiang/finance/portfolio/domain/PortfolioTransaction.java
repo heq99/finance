@@ -1,7 +1,9 @@
 package qiang.finance.portfolio.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -16,7 +18,10 @@ public class PortfolioTransaction implements Serializable, DomainObject {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@TableGenerator(name="Portforlio_TXN_ID_Generator", table="ID_TABLE", 
+                    pkColumnName="ID_NAME", valueColumnName="ID_HI",
+                    pkColumnValue="PORTFOLIO_TRANSACTION_ID", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="Portforlio_TXN_ID_Generator")
 	@Column(name="ID")
 	private int id;
 

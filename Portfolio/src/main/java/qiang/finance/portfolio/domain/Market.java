@@ -15,8 +15,11 @@ import java.util.List;
 public class Market implements Serializable, DomainObject {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@Id	
+	@TableGenerator(name="Market_ID_Generator", table="ID_TABLE", 
+	                pkColumnName="ID_NAME", valueColumnName="ID_HI",
+	                pkColumnValue="MARKET_ID", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="Market_ID_Generator")
 	@Column(name="ID")
 	private int id;
 

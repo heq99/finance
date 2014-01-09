@@ -11,6 +11,21 @@
 <body>
 
 <div id="global">
+  <table>
+    <tr>
+      <td>ID</td><td>Market Short Code</td><td>Description</td>
+    </tr>
+    <c:forEach items="${market_list}" var="marketItem">
+      <tr>
+        <td><c:out value="${marketItem.id}" /></td>
+        <td><c:out value="${marketItem.shortCode }" /></td>
+        <td><c:out value="${marketItem.description }" /></td>
+      </tr>
+    </c:forEach>
+  </table>
+</div>
+
+<div id="global">
   <form:form commandName="market" action="market_save" method="post">
     <fieldset>
       <legend>Add a market</legend>

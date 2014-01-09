@@ -30,4 +30,10 @@ public class MarketServiceImpl implements MarketService {
 	public Market saveMarket(Market market) {
 		return marketDao.save(market);
 	}
+	
+	@Override
+	@Transactional 
+	public Market deleteMarket(Market market) {
+		return marketDao.delete(market);
+	}
 }
