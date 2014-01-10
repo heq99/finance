@@ -50,6 +50,12 @@ public class GenericDaoJpa<T extends DomainObject> implements GenericDao<T> {
 	}
 
 	@Override
+	public T update(T obj) {
+		entityManager.merge(obj);
+		return obj;
+	}
+	
+	@Override
 	public T delete(T obj) {
 		entityManager.remove(obj);
 		return obj;

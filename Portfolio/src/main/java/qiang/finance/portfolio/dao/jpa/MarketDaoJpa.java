@@ -11,9 +11,4 @@ public class MarketDaoJpa extends GenericDaoJpa<Market> implements MarketDao {
 		super(Market.class);
 	}
 
-	@Override
-	public Market getMarketById(Integer id) {
-		return this.get(id);
-	}
-
 }

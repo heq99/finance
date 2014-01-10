@@ -10,5 +10,6 @@ public interface MarketService {
 
 	Market getMarketById(Integer id);
 	Market saveMarket(Market market);
-	Market deleteMarket(Market market);
+	Market updateMarket(Market market);
+	Market deleteMarket(Integer id);
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,23 +11,14 @@
 </head>
 <body>
 
-<div id="global">
-  <table>
-    <tr>
-      <td>ID</td><td>Market Short Code</td><td>Description</td>
-    </tr>
-    <c:forEach items="${market_list}" var="marketItem">
-      <tr>
-        <td><c:out value="${marketItem.id}" /></td>
-        <td><c:out value="${marketItem.shortCode }" /></td>
-        <td><c:out value="${marketItem.description }" /></td>
-      </tr>
-    </c:forEach>
-  </table>
-</div>
+<jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div id="global">
-  <form:form commandName="market" action="market_save" method="post">
+  <c:choose>
+    <c:when test="${market['new']}"><c:set var="method" value="post"/></c:when>
+    <c:otherwise><c:set var="method" value="put"/></c:otherwise>
+  </c:choose>
+  <form:form commandName="market" method="${method}">
     <fieldset>
       <legend>Add a market</legend>
       <p>

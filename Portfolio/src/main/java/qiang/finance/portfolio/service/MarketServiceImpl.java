@@ -22,7 +22,7 @@ public class MarketServiceImpl implements MarketService {
 
 	@Override
 	public Market getMarketById(Integer id) {
-		return marketDao.getMarketById(id);
+		return marketDao.get(id);
 	}
 
 	@Override
@@ -32,8 +32,14 @@ public class MarketServiceImpl implements MarketService {
 	}
 	
 	@Override
+	@Transactional
+	public Market updateMarket(Market market) {
+		return marketDao.update(market);
+	}
+	
+	@Override
 	@Transactional 
-	public Market deleteMarket(Market market) {
-		return marketDao.delete(market);
+	public Market deleteMarket(Integer id) {
+		return marketDao.delete(marketDao.get(id));
 	}
 }

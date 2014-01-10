@@ -4,6 +4,4 @@ import qiang.finance.portfolio.domain.Market;
 
 public interface MarketDao extends GenericDao<Market> {
 	
-	Market getMarketById(Integer id);
-
 }
