@@ -21,7 +21,7 @@ public class InstrumentType implements Serializable, DomainObject {
                     pkColumnValue="INSTRUMENT_TYPE_ID", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="Instrument_Type_ID_Generator")
 	@Column(name="ID")
-	private int id;
+	private Integer id;
 
 	@Column(name="NAME")
 	private String name;
@@ -29,12 +29,16 @@ public class InstrumentType implements Serializable, DomainObject {
 	public InstrumentType() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public boolean isNew() {
+		return this.id==null;
 	}
 
 	public String getName() {

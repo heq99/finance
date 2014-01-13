@@ -6,12 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add Market Form</title>
+<jsp:include page="fragments/cssAndjs.jsp" />
+<title>Market</title>
 </head>
 <body>
 
+<jsp:include page="fragments/bodyHeader.jsp" />
+
 <div id="global">
-  <table>
+  <table class="color-table">
     <tr>
       <td>ID</td><td>Market Short Code</td><td>Description</td><td>Action</td>
     </tr>
@@ -33,6 +36,8 @@
   <br/>
   <a href="<spring:url value='/markets/new'/>">Add Market</a>
 </div>
+
+<jsp:include page="fragments/bodyFooter.jsp" />
 
 </body>
 </html>

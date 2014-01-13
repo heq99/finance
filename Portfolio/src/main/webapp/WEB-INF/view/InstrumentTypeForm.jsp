@@ -10,15 +10,15 @@
 <jsp:include page="fragments/cssAndjs.jsp" />
 <title>
   <c:choose>
-    <c:when test="${market['new']}">
+    <c:when test="${instrumentType['new']}">
       <c:set var="method" value="post"/>
-      <c:set var="button" value="Add Market"/>
-      Add Market
+      <c:set var="button" value="Add Instrument Type"/>
+      Add Instrument Type
     </c:when>
     <c:otherwise>
       <c:set var="method" value="put"/>
-      <c:set var="button" value="Update Market"/>
-      Update Market
+      <c:set var="button" value="Update Instrument Type"/>
+      Update Instrument Type
     </c:otherwise>
   </c:choose>
 </title>
@@ -28,16 +28,12 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div id="global">
-  <form:form commandName="market" method="${method}">
+  <form:form commandName="instrumentType" method="${method}">
     <fieldset>
       <legend>${button}</legend>
       <p>
-        <label for="shortCode">Market Short Code: </label>
-        <form:input id="shortCode" path="shortCode" />
-      </p>
-      <p>
-        <label for="description">Market Description: </label>
-        <form:textarea id="description" path="description" rows="5" cols="40"/>
+        <label for="name">Instrument Type Name: </label>
+        <form:input id="name" path="name" />
       </p>
       <p id="buttons">
         <input id="reset" type="reset">

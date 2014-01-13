@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<jsp:include page="fragments/cssAndjs.jsp" />
+
 <title>Portfolio</title>
 </head>
 <body>
@@ -13,8 +16,11 @@
   
   <div>
     <h2>Welcome</h2>
-    <a href="<spring:url value="/markets" />">Manage markets</a>
+    <a href="<spring:url value="/markets" />">Manage Markets</a> <br/>
+    <a href="<spring:url value="/instrumentTypes" />">Manage Instrument Types</a>
   </div>
+  
+  <jsp:include page="fragments/bodyFooter.jsp" />
   
 </body>
 </html>
