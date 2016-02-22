@@ -6,6 +6,6 @@
              version="2.1">
     <persistence-unit name="price-jpa" transaction-type="JTA">
         <class>qiang.finance.intradaydata.reader.entities.Product</class>
-        <class>qiang.finance.intradaydata.reader.entities.PriceTicker</class>
+        <class>qiang.finance.intradaydata.reader.entities.IntraDayData</class>
     </persistence-unit>
 </persistence>
