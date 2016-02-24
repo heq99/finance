@@ -36,7 +36,7 @@ public class CsvIntradayDataReader extends IntradayDataReader {
             product = productRepository.save(product);
         }
 
-        String url = "https://chartapi.finance.yahoo.com/instrument/1.0/%5Eftse/chartdata;type=quote;range=1d/csv";
+        String url = "http://chartapi.finance.yahoo.com/instrument/1.0/%5Eftse/chartdata;type=quote;range=1d/csv";
 
         URLConnection urlConnection;
         BufferedReader reader;
