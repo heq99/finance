@@ -1,4 +1,4 @@
-package qiang.finance.intradaydata.reader.yahoo.json;
+package qiang.finance.intradaydata.reader.json.yahoo;
 
 /**
  * Created by qhe on 14/02/16.
