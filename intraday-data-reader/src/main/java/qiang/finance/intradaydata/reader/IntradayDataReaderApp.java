@@ -16,8 +16,8 @@ public class IntradayDataReaderApp {
 
     public static void main(String[] args) throws IOException {
         ApplicationContext context = new AnnotationConfigApplicationContext(IntradayDataReaderApp.class);
-//        CsvIntradayDataReader csvIntradayDataReader = context.getBean(CsvIntradayDataReader.class);
-//        csvIntradayDataReader.read();
+        CsvIntradayDataReader csvIntradayDataReader = context.getBean(CsvIntradayDataReader.class);
+        csvIntradayDataReader.read();
 
         JsonIntradayDataReader jsonIntradayDataReader = context.getBean(JsonIntradayDataReader.class);
         jsonIntradayDataReader.read();

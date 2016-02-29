@@ -85,8 +85,6 @@ public class CsvIntradayDataReader extends IntradayDataReader {
                     IntraDayData intraDayData = new IntraDayData(timestamp, close, high, low, open, volume);
                     intraDayData.setProduct(product);
                     repository.save(intraDayData);
-
-                    System.out.println("time: " + timestamp + "   close: " + close + "   high: " + high + "   low: " + low + "   open: " + open + "    volume: " + volume);
                 }
 
                 if (line.startsWith("volume")) {
