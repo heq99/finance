@@ -17,9 +17,9 @@
     <context:property-placeholder location="classpath:conf/network.properties" ignore-unresolvable="true"/>
 
     <context:annotation-config />
-    <context:component-scan base-package="qiang.finance.intradaydata.reader" />
+    <context:component-scan base-package="qiang.finance.intradaydata" />
 
-    <jpa:repositories base-package="qiang.finance.intradaydata.reader.repositories"
+    <jpa:repositories base-package="qiang.finance.intradaydata.repositories"
                       entity-manager-factory-ref="entityManagerFactory"
                       transaction-manager-ref="transactionManager"/>
 
@@ -35,7 +35,7 @@
     <bean id="entityManagerFactory" depends-on="dataSource"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="qiang.finance.intradaydata.reader"/>
+        <property name="packagesToScan" value="qiang.finance.intradaydata.entities"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="true"/>

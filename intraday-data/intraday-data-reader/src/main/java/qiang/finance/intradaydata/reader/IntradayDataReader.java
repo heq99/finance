@@ -1,8 +1,8 @@
 package qiang.finance.intradaydata.reader;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import qiang.finance.intradaydata.reader.repositories.IntraDayDataRepository;
-import qiang.finance.intradaydata.reader.repositories.ProductRepository;
+import qiang.finance.intradaydata.repositories.IntraDayDataRepository;
+import qiang.finance.intradaydata.repositories.ProductRepository;
 
 import java.io.IOException;
 

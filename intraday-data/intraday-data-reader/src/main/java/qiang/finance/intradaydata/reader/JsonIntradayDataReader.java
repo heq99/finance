@@ -19,7 +19,7 @@ import qiang.finance.intradaydata.reader.config.ProxyConfiguration;
 import qiang.finance.intradaydata.entities.IntraDayData;
 import qiang.finance.intradaydata.entities.Product;
 import qiang.finance.intradaydata.reader.json.lse.Data;
-import qiang.finance.intradaydata.reader.repositories.IntraDayDataRepository;
+import qiang.finance.intradaydata.repositories.IntraDayDataRepository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
