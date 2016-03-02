@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import qiang.finance.intradaydata.reader.config.ProxyConfiguration;
-import qiang.finance.intradaydata.reader.entities.IntraDayData;
-import qiang.finance.intradaydata.reader.entities.Product;
+import qiang.finance.intradaydata.entities.IntraDayData;
+import qiang.finance.intradaydata.entities.Product;
 
 import java.io.BufferedReader;
 import java.io.IOException;

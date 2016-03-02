@@ -1,7 +1,7 @@
-package qiang.finance.intradaydata.reader.repositories;
+package qiang.finance.intradaydata.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import qiang.finance.intradaydata.reader.entities.Product;
+import qiang.finance.intradaydata.entities.Product;
 
 /**
  * Created by qhe on 13/02/16.

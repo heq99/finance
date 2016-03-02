@@ -3,6 +3,8 @@ package qiang.finance.intradaydata.reader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.http.Consts;
+import org.apache.http.HttpHost;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -13,8 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import qiang.finance.intradaydata.reader.entities.IntraDayData;
-import qiang.finance.intradaydata.reader.entities.Product;
+import qiang.finance.intradaydata.reader.config.ProxyConfiguration;
+import qiang.finance.intradaydata.entities.IntraDayData;
+import qiang.finance.intradaydata.entities.Product;
 import qiang.finance.intradaydata.reader.json.lse.Data;
 import qiang.finance.intradaydata.reader.repositories.IntraDayDataRepository;
 
@@ -34,7 +37,10 @@ public class JsonIntradayDataReader extends IntradayDataReader {
     private static final Logger logger = LoggerFactory.getLogger(JsonIntradayDataReader.class);
 
     @Autowired
-    IntraDayDataRepository intraDayDataRepository;
+    private IntraDayDataRepository intraDayDataRepository;
+
+    @Autowired
+    private ProxyConfiguration proxyConfiguration;
 
     @Override
     public void read() throws IOException {
@@ -46,8 +52,21 @@ public class JsonIntradayDataReader extends IntradayDataReader {
         }
 
         String json = "{\"request\":{\"SampleTime\":\"1mm\",\"TimeFrame\":\"1d\",\"RequestedDataSetType\":\"ohlc\",\"ChartPriceType\":\"price\",\"Key\":\"MKS.LD\",\"OffSet\":-60,\"FromDate\":null,\"ToDate\":null,\"UseDelay\":true,\"KeyType\":\"Topic\",\"KeyType2\":\"Topic\",\"Language\":\"en\"}}";
-        CloseableHttpClient httpClient = HttpClients.createDefault();
+
+        CloseableHttpClient httpClient;
         HttpPost httpPost = new HttpPost("http://charts.londonstockexchange.com/WebCharts/services/ChartWService.asmx/GetPricesWithVolume");
+
+        if (proxyConfiguration.isProxyEnabled()) {
+            httpClient = HttpClients.custom().setDefaultCredentialsProvider(proxyConfiguration.getCredentialsProvider()).build();
+
+            HttpHost proxy = new HttpHost(proxyConfiguration.getHostname(), proxyConfiguration.getPort());
+            RequestConfig requestConfig = RequestConfig.custom().setProxy(proxy).build();
+            httpPost.setConfig(requestConfig);
+        } else {
+            httpClient = HttpClients.createDefault();
+
+        }
+
         httpPost.setEntity(new StringEntity(json, ContentType.create("application/json", Consts.UTF_8)));
 
         CloseableHttpResponse response = httpClient.execute(httpPost);

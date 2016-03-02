@@ -1,5 +1,10 @@
 package qiang.finance.intradaydata.reader.config;
 
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.Credentials;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -43,5 +48,28 @@ public class ProxyConfiguration {
 
     public String getProxyCredentials() {
         return Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
+    }
+
+    public CredentialsProvider getCredentialsProvider() {
+        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(new AuthScope(hostname, port),
+                new UsernamePasswordCredentials(username, password));
+        return credentialsProvider;
+    }
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
