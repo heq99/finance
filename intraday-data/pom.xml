@@ -10,6 +10,7 @@
 	<modules>
 		<module>intraday-data-reader</module>
         <module>intraday-data-core</module>
+        <module>intraday-data-webapp</module>
     </modules>
 	
     <properties>
@@ -32,6 +33,11 @@
 
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>

@@ -3,7 +3,8 @@ package qiang.finance.intradaydata.reader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.Import;
+import qiang.finance.intradaydata.IntradayDataCoreConfig;
 
 import java.io.IOException;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
  * Created by Qiang He on 08/02/2016.
  */
 @Configuration
-@ImportResource("classpath:./app-context.xml")
+@Import(IntradayDataCoreConfig.class)
 public class IntradayDataReaderApp {
 
     public static void main(String[] args) throws IOException {

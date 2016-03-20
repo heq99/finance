@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>intraday-data</artifactId>
+        <groupId>qiang.finance</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>intraday-data-webapp</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>qiang.finance</groupId>
+            <artifactId>intraday-data-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/typescript/app</directory>
+                            <includes>
+                                <include>**/*.js</include>
+                                <include>**/*.js.map</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/*.ts</exclude>
+                                <exclude>**/*.html</exclude>
+                                <exclude>**/*.css</exclude>
+                            </excludes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>compile-typescript</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <target>
+                                <exec executable="cmd" dir="${project.basedir}/src/main/typescript">
+                                    <arg value="/c" />
+                                    <arg value="tsc" />
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/typescript</directory>
+                            <includes>
+                                <include>app/**/*.js</include>
+                                <include>app/**/*.html</include>
+                                <include>app/**/*.css</include>
+                                <include>*.html</include>
+                                <include>node_modules/es6-shim/es6-shim.min.js</include>
+                                <include>node_modules/systemjs/dist/system-polyfills.js</include>
+                                <include>node_modules/angular2/es6/dev/src/testing/shims_for_IE.js</include>
+                                <include>node_modules/angular2/bundles/angular2-polyfills.js</include>
+                                <include>node_modules/systemjs/dist/system.src.js</include>
+                                <include>node_modules/rxjs/bundles/Rx.js</include>
+                                <include>node_modules/angular2/bundles/angular2.dev.js</include>
+                                <include>node_modules/angular2/bundles/router.dev.js</include>
+                                <include>node_modules/angular2/bundles/http.dev.js</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals><goal>repackage</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
