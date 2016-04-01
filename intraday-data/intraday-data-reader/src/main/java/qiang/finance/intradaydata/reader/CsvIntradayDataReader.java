@@ -2,9 +2,7 @@ package qiang.finance.intradaydata.reader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import qiang.finance.intradaydata.reader.config.ProxyConfiguration;
 import qiang.finance.intradaydata.entities.IntraDayData;
 import qiang.finance.intradaydata.entities.Product;
 
@@ -22,9 +20,6 @@ import java.util.StringTokenizer;
 public class CsvIntradayDataReader extends IntradayDataReader {
 
     private static final Logger logger = LoggerFactory.getLogger(CsvIntradayDataReader.class);
-
-    @Autowired
-    ProxyConfiguration proxyConfiguration;
 
     @Override
     public void read() {

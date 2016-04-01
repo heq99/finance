@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import qiang.finance.intradaydata.reader.config.ProxyConfiguration;
 import qiang.finance.intradaydata.entities.IntraDayData;
 import qiang.finance.intradaydata.entities.Product;
 import qiang.finance.intradaydata.reader.json.lse.Data;
@@ -38,9 +37,6 @@ public class JsonIntradayDataReader extends IntradayDataReader {
 
     @Autowired
     private IntraDayDataRepository intraDayDataRepository;
-
-    @Autowired
-    private ProxyConfiguration proxyConfiguration;
 
     @Override
     public void read() throws IOException {
