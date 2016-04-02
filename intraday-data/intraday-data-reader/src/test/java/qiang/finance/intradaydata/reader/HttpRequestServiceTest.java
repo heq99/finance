@@ -21,11 +21,12 @@ public class HttpRequestServiceTest {
     HttpRequestService httpRequestService;
 
     @Test
-    public void testHttpGetWithoutProxy() {
+    public void testHttpGet() {
         String url = "http://chartapi.finance.yahoo.com/instrument/1.0/%5Eftse/chartdata;type=quote;range=1d/csv";
 
         try {
             String responseContent = httpRequestService.executeRequest(url, HttpMethod.GET, "", "text/plain");
+			System.out.println(responseContent);
             Assert.assertNotNull(responseContent);
         } catch (IOException e) {
             e.printStackTrace();
@@ -33,12 +34,13 @@ public class HttpRequestServiceTest {
     }
 
     @Test
-    public void testHttpPostWithoutProxy() {
+    public void testHttpPost() {
         String url = "http://charts.londonstockexchange.com/WebCharts/services/ChartWService.asmx/GetPricesWithVolume";
         String requestContent = "{\"request\":{\"SampleTime\":\"1mm\",\"TimeFrame\":\"1d\",\"RequestedDataSetType\":\"ohlc\",\"ChartPriceType\":\"price\",\"Key\":\"MKS.LD\",\"OffSet\":-60,\"FromDate\":null,\"ToDate\":null,\"UseDelay\":true,\"KeyType\":\"Topic\",\"KeyType2\":\"Topic\",\"Language\":\"en\"}}";
 
         try {
             String responseContent = httpRequestService.executeRequest(url, HttpMethod.POST, requestContent, "application/json");
+			System.out.println(responseContent);
             Assert.assertNotNull(responseContent);
         } catch (IOException e) {
             e.printStackTrace();
